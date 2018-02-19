@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/appTvCancel"
+            style="@style/TextRegularSizeSmall"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/small"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/tiny"
+            android:text="Cancel"
+            android:textColor="@color/colorWhite" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/appTvTitle"
+            style="@style/TextSemiBoldSizeRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorTitle"
+            tools:text="Title" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small"
+        android:layout_marginRight="@dimen/small"
+        android:background="@drawable/style_edittext"
+        android:visibility="visible">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/appEdtSearch"
+            style="@style/styleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/hint_search"
+            android:inputType="text" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/appTvTitle"
+        style="@style/TextRegularSizeRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/small"
+        android:paddingRight="@dimen/small"
+        android:paddingTop="@dimen/medium"
+        android:paddingBottom="@dimen/medium"
+        android:textColor="@color/colorDialogSpText" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDialogSpLine" />
+</LinearLayout>
