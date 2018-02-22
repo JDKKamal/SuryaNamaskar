@@ -5,18 +5,11 @@ package com.jdkgroup.baseclass
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.app.Dialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Point
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -26,51 +19,28 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.AppCompatTextView
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
-import android.text.InputFilter
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.view.animation.Animation
+import android.support.v7.widget.*
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.TextView
-
+import butterknife.ButterKnife
+import butterknife.Unbinder
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.constant.AppConstant
-import com.jdkgroup.interacter.disposablemanager.DisposableManager
+import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.utils.AppUtils
 import com.jdkgroup.utils.Logging
-
-import org.json.JSONObject
 import org.parceler.Parcels
-
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.FileReader
-import java.io.InputStream
-import java.text.DateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.HashMap
-
-import butterknife.ButterKnife
-import butterknife.Unbinder
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import java.util.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -321,7 +291,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //TODO GSON
-    protected fun getToJson(alData: List<*>): String {
+    protected fun getToJson(alData: Any?): Any {
         return Gson().toJson(alData)
     }
 

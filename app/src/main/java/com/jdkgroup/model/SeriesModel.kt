@@ -1,3 +1,3 @@
-package com.jdkgroup.suryanamaskar
+package com.jdkgroup.model
 
 data class SeriesModel(val name :String)

@@ -3,7 +3,7 @@ package com.jdkgroup.presenter
 import android.os.Handler
 
 import com.jdkgroup.baseclass.BasePresenter
-import com.jdkgroup.suryanamaskar.SignUpActivity
+import com.jdkgroup.suryanamaskar.activity.SignUpActivity
 import com.jdkgroup.utils.AppUtils
 import com.jdkgroup.view.SplashScreenView
 import com.jdkgroup.utils.Preference

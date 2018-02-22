@@ -1,4 +1,4 @@
-package com.jdkgroup.suryanamaskar
+package com.jdkgroup.suryanamaskar.adapter
 
 import android.app.Activity
 import android.support.v7.widget.AppCompatTextView
@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jdkgroup.suryanamaskar.R
+import com.jdkgroup.model.SeriesModel
 
 class MyAdapter(private val activity: Activity, private val listString: MutableList<SeriesModel>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 

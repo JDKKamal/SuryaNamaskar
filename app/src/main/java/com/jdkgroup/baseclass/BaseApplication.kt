@@ -16,6 +16,7 @@ import com.jdkgroup.utils.Logging
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 class BaseApplication : MultiDexApplication() {
+    var baseApplication: BaseApplication? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -31,8 +32,8 @@ class BaseApplication : MultiDexApplication() {
                 .build())
     }
 
-    companion object {
+   /* companion object {
         var baseApplication: BaseApplication? = null
             private set
-    }
+    }*/
 }
