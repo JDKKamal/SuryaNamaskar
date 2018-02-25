@@ -2,6 +2,9 @@ package com.jdkgroup.connection
 
 import com.jdkgroup.model.api.Response
 import com.jdkgroup.model.api.countrylist.CountryResponse
+import com.jdkgroup.model.api.signup.SignUpResponse
+import com.jdkgroup.model.request.LoginRequest
+import com.jdkgroup.model.request.SignUpRequest
 
 import java.util.HashMap
 
@@ -28,6 +31,12 @@ interface RestService {
 
     @GET
     fun apiGetCountryList(@Url url: String): Observable<CountryResponse>
+
+    @POST
+    fun apiPostSignUp(@Url url: String, @Body signUpRequest : SignUpRequest): Observable<SignUpResponse>
+
+    @POST
+    fun apiPostLogin(@Url url: String, @Body loginRequest: LoginRequest): Observable<SignUpResponse>
 
     @Multipart
     @POST

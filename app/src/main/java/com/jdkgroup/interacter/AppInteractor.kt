@@ -20,6 +20,9 @@ import com.jdkgroup.constant.RestConstant
 import com.jdkgroup.interacter.operators.RxAPICallDisposingObserver
 import com.jdkgroup.model.ModelOSInfo
 import com.jdkgroup.model.api.countrylist.CountryResponse
+import com.jdkgroup.model.api.signup.SignUpResponse
+import com.jdkgroup.model.request.LoginRequest
+import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.utils.Logging
 
 import java.security.MessageDigest
@@ -91,6 +94,20 @@ class AppInteractor : RestConstant {
     //TODO CALL API
     fun apiGetCountryList(context: Context, callback: InterActorCallback<CountryResponse>) {
         RestClient(context).service.apiGetCountryList(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_GET_COUNTRY_LIST)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(RxAPICallDisposingObserver(context, callback))
+    }
+
+    fun apiPostSignUp(context: Context, signUpRequest: SignUpRequest, callback: InterActorCallback<SignUpResponse>) {
+        RestClient(context).service.apiPostSignUp(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_SIGN_UP, signUpRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(RxAPICallDisposingObserver(context, callback))
+    }
+
+    fun apiPostLogin(context: Context, loginRequest: LoginRequest, callback: InterActorCallback<SignUpResponse>) {
+        RestClient(context).service.apiPostLogin(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_LOGIN, loginRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(RxAPICallDisposingObserver(context, callback))

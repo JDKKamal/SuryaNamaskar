@@ -9,6 +9,8 @@ interface RestConstant {
         val IMAGE_URL = ""
 
         val API_GET_COUNTRY_LIST = "countrylist"
+        val API_POST_SIGN_UP = "signup"
+        val API_POST_LOGIN = "login"
         val API_MULTIPART_UPLOAD_USER_PROFILE_PICTURE = "upload_profile"
 
         val REQUEST_AUTH = 1

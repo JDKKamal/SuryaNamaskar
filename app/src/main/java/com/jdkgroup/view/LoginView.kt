@@ -5,8 +5,7 @@ import com.jdkgroup.model.api.Response
 import com.jdkgroup.model.api.countrylist.CountryResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
 
-interface SignUpView : BaseView {
-    fun apiGetCountryList(response: CountryResponse)
-    fun apiPostSignUp(response: SignUpResponse)
+interface LoginView : BaseView {
+    fun apiPostLogin(response: SignUpResponse)
 }
 
