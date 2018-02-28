@@ -25,7 +25,7 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView 
 
         hideSoftKeyboard()
 
-        presenter!!.callApiPostLogin(LoginRequest( "email", "password"));
+        presenter!!.callApiPostLogin(LoginRequest("kamal.lakhani56@gmail.com", "kamal"));
     }
 
     override fun createPresenter(): LoginPresenter {

@@ -9,6 +9,7 @@ import com.jdkgroup.interacter.InterActorCallback
 import com.jdkgroup.interacter.disposablemanager.DisposableManager
 import com.jdkgroup.model.api.Response
 import com.jdkgroup.model.api.countrylist.ModelCountry
+import com.jdkgroup.utils.Logging
 
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -35,6 +36,8 @@ class RxAPICallDisposingObserver<T>(private val context: Context, private val ca
     }
 
     override fun onError(e: Throwable) {
+        Logging.e(e.message.toString())
+
         callback.onError(exceptionHandle(e))
         callback.onFinish()
     }

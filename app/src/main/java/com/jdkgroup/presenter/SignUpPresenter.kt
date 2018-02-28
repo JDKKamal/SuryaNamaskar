@@ -1,5 +1,6 @@
 package com.jdkgroup.presenter
 
+import com.google.gson.Gson
 import com.jdkgroup.baseclass.BasePresenter
 import com.jdkgroup.interacter.InterActorCallback
 import com.jdkgroup.model.api.Response

@@ -81,10 +81,6 @@ class AppInteractor : RestConstant {
                 Logging.i(facebookKeyBase64)
                 //String facebookkeyBase64new = new String(Base64.encodeBytes(md.digest()));
             }
-        } catch (e1: PackageManager.NameNotFoundException) {
-
-        } catch (e: NoSuchAlgorithmException) {
-
         } catch (e: Exception) {
 
         }
