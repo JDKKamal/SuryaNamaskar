@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="login_button_radius">10dp</dimen>
 
-    <dimen name="iv_form">@dimen/_25sdp</dimen>
+    <dimen name="iv_form">@dimen/_20sdp</dimen>
     <dimen name="iv_social_login">@dimen/_50sdp</dimen>
     <dimen name="iv_app_logo">@dimen/_90sdp</dimen>
 

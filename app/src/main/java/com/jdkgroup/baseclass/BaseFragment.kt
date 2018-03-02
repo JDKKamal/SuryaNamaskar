@@ -15,6 +15,7 @@ import android.graphics.Rect
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Parcelable
@@ -87,8 +88,9 @@ abstract class BaseFragment : Fragment() {
             return true
         }
 
-    protected val uuidRandom: UUID
-        get() = UUID.randomUUID()
+    protected fun uuidRandom(): UUID {
+        return UUID.randomUUID()
+    }
 
     protected val currentDate: Date
         get() = Date()
@@ -295,6 +297,28 @@ abstract class BaseFragment : Fragment() {
             4 //BUNDLE AND CLEAR ALL HISTORY
             -> startActivity(Intent(activity, classType).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("bundle", bundle))
         }
+    }
+
+    protected fun <T> getUnionList(first: MutableList<T>, last: List<T>): List<*> {
+        if (isEmptyList(first) && isEmptyList(last)) {
+            first.addAll(last)
+            return first
+        } else if (isEmptyList(first) && !isEmptyList(last)) {
+            return first
+        }
+        return last
+    }
+
+    protected fun isEmptyList(list: List<*>?): Boolean {
+        return list != null && !list.isEmpty()
+    }
+
+    protected fun hasLollipop(): Boolean {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+    }
+
+    protected fun hasM(): Boolean {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
 
     fun decimalPointAfterBeforeAmount(maxDigitsBeforeDecimalPoint: Int, maxDigitsAfterDecimalPoint: Int): InputFilter {

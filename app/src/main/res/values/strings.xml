@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Surya Namaskar</string>
+    <string name="app_name">Interview Question</string>
 
     <string name="no_data">No Data</string>
 
@@ -27,6 +27,7 @@
     <!--    BUTTON      -->
     <string name="btn_login"> LOGIN </string>
     <string name="btn_register_user"> REGISTER USER </string>
+    <string name="btn_sign_up"> Sign Up</string>
     <string name="btn_forgot_password"> FORGOT PASSWORD </string>
     <string name="btn_change_password"> CHANGE PASSWORD </string>
     <string name="btn_resend"> RESEND </string>

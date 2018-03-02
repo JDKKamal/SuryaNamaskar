@@ -7,7 +7,7 @@ class LoginRequest {
     constructor() {}
 
     constructor(email: String, password: String) {
-        this.email = email
+        this.email = email.toLowerCase()
         this.password = password
     }
 }

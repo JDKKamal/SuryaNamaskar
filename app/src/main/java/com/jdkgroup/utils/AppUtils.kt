@@ -20,6 +20,7 @@ import android.provider.MediaStore
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.AppCompatImageView
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
@@ -30,6 +31,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 
 import com.jdkgroup.suryanamaskar.R
 
@@ -404,5 +406,10 @@ object AppUtils {
         }
 
         return inputStream.toString()
+    }
+
+    fun glideSetAppImageView(context : Context, imageUrl : String, appIv : AppCompatImageView)
+    {
+        Glide.with(context).load(imageUrl).into(appIv);
     }
 }

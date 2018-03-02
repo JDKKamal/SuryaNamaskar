@@ -9,8 +9,6 @@ import com.jdkgroup.model.api.signup.SignUpResponse
 import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.view.SignUpView
 
-import okhttp3.MultipartBody
-
 class SignUpPresenter : BasePresenter<SignUpView>() {
     fun callApiGetCountryList() {
         appInteractor.apiGetCountryList(view!!.activity, object : InterActorCallback<CountryResponse> {

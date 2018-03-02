@@ -9,7 +9,4 @@ class CountryResponse : Response() {
     @SerializedName("countrylist")
     @Expose
     var listCountry: List<ModelCountry>? = null
-    @SerializedName("response")
-    @Expose
-    private val response: Response? = null
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00897B</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#414141</color>
+    <color name="colorPrimary">#FF6900</color>
+    <color name="colorPrimaryDark">#F79E1C</color>
+    <color name="colorAccent">#FF6900</color>
 
-    <color name="colorBackground">#FAFAFA</color>
+
+    <color name="colorButton">#FF6900</color>
+
+    <color name="colorBackground">#FFFFFF</color> <!-- FAFAFA -->
     <color name="colorIconTintForm">#BDBDBD</color>
     <color name="colorDialogSpLine">#828282</color>
 
@@ -86,10 +89,15 @@
 
     <color name="separatorColor">#18102C</color>
 
-    <color name="colorHintEditText">#BDBDBD</color>
-    <color name="colorNormalEditText">#00796B</color>
-    <color name="colorBorderEditText">#00796B</color>
+    <color name="colorHintEditText">#969799</color>
+    <color name="colorNormalEditText">#F79E1C</color>
+    <color name="colorBorderEditText">#F08600</color>
+
+    <color name="color_or_sign_with">#939393</color>
+    <color name="color_line_or">#FF6900</color>
+
     <color name="colorForgotPassword">#414141</color>
+    <color name="colorSignUp">#FF6900</color>
     <color name="colorDialogSpText">#414141</color>
     <color name="colorTitle">#414141</color>
 

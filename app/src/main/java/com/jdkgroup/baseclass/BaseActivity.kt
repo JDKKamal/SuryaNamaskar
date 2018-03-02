@@ -20,13 +20,12 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.*
+import android.text.InputFilter
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.TextView
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -45,8 +44,6 @@ import java.util.*
 abstract class BaseActivity : AppCompatActivity() {
 
     //https://devhub.io
-    private var unbinder: Unbinder? = null
-
     var progressToolbar: ProgressBar? = null
     private var progressDialog: Dialog? = null
     private var params: HashMap<String, String>? = null
@@ -99,15 +96,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        if (unbinder != null) {
-            unbinder!!.unbind()
-        }
         //DisposableManager.dispose();
         super.onDestroy()
-    }
-
-    protected fun bindViews() {
-        unbinder = ButterKnife.bind(this)
     }
 
     protected fun setContentViewWithoutInject(layoutResId: Int) {
@@ -372,16 +362,16 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun <T> getUnionList(first: MutableList<T>, last: List<T>): List<*> {
-        if (isNotEmptyList(first) && isNotEmptyList(last)) {
+        if (isEmptyList(first) && isEmptyList(last)) {
             first.addAll(last)
             return first
-        } else if (isNotEmptyList(first) && !isNotEmptyList(last)) {
+        } else if (isEmptyList(first) && !isEmptyList(last)) {
             return first
         }
         return last
     }
 
-    protected fun isNotEmptyList(list: List<*>?): Boolean {
+    protected fun isEmptyList(list: List<*>?): Boolean {
         return list != null && !list.isEmpty()
     }
 
@@ -391,6 +381,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun hasM(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+    }
+
+    fun decimalPointAfterBeforeAmount(maxDigitsBeforeDecimalPoint: Int, maxDigitsAfterDecimalPoint: Int): InputFilter {
+
+        return InputFilter { source, start, end, dest, dstart, dend ->
+            val builder = StringBuilder(dest)
+            builder.replace(dstart, dend, source.subSequence(start, end).toString())
+            if (!builder.toString().matches(("(([1-9]{1})([0-9]{0," + (maxDigitsBeforeDecimalPoint - 1) + "})?)?(\\.[0-9]{0," + maxDigitsAfterDecimalPoint + "})?").toRegex())) {
+                return@InputFilter if (source.length == 0) dest.subSequence(dstart, dend) else ""
+            }
+            null
+        }
     }
 
     /* TODO LAUNCH ACTIVITY/FRAGMENT ANIMATION*/

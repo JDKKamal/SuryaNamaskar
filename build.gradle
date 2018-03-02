@@ -54,4 +54,6 @@ ext{
     rxjavaLibVersion = "2.1.9"
     rxandroidLibVersion = "2.0.1"
     okhttp3interceptorLibVersion = "3.9.1"
+
+    glideLibVersion = "4.6.1"
 }

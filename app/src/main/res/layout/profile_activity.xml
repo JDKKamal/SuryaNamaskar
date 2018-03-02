@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,23 +19,13 @@
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="@dimen/iv_app_logo"
-                android:layout_height="@dimen/iv_app_logo"
+                android:tint="@color/colorPrimary"
                 android:layout_gravity="center"
-                android:tint="@color/colorPrimary" />
-
-            <android.support.v7.widget.AppCompatTextView
-                style="@style/TextExtraLargeSizeRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="@dimen/small"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/app_name" />
+                android:layout_height="@dimen/iv_app_logo" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium"
                 android:background="@drawable/style_edittext">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -45,9 +34,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:drawableLeft="@drawable/username"
                     android:hint="@string/hint_username"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPassword" />
 
             </RelativeLayout>
 
@@ -63,9 +51,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:drawableLeft="@drawable/email"
                     android:hint="@string/hint_email"
-                    android:inputType="textWebEmailAddress" />
+                    android:inputType="textPassword" />
 
             </RelativeLayout>
 
@@ -82,18 +69,16 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/appIvPassword"
                     android:background="@null"
-                    android:drawableLeft="@drawable/password"
                     android:hint="@string/hint_password"
                     android:inputType="textPassword" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@id/appIvPassword"
+                    android:tint="@color/colorIconTintForm"
                     android:layout_width="@dimen/iv_form"
                     android:layout_height="@dimen/iv_form"
-                    app:srcCompat="@drawable/visibility_on"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:tint="@color/colorIconTintForm" />
+                    android:layout_centerVertical="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -109,19 +94,86 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/appIvConfirmPassword"
                     android:background="@null"
-                    android:drawableLeft="@drawable/password"
                     android:hint="@string/hint_confirm_password"
                     android:inputType="textPassword" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@id/appIvConfirmPassword"
+                    android:tint="@color/colorIconTintForm"
                     android:layout_width="@dimen/iv_form"
                     android:layout_height="@dimen/iv_form"
-                    app:srcCompat="@drawable/visibility_on"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:tint="@color/colorIconTintForm" />
+                    android:layout_centerVertical="true"/>
             </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RelativeLayout
+                    android:id="@+id/llCountry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/style_edittext">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/appEdtCountry"
+                        style="@style/styleEditText"
+                        android:singleLine="true"
+                        android:focusable="false"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/appIvCountryDropDown"
+                        android:background="@null"
+                        android:hint="@string/hint_country" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@id/appIvCountryDropDown"
+                        android:layout_width="@dimen/iv_form"
+                        android:tint="@color/colorIconTintForm"
+                        android:layout_height="@dimen/iv_form"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/llState"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/medium"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/style_edittext">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/appEdtState"
+                        style="@style/styleEditText"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:focusable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/appIvStateDropDown"
+                        android:background="@null"
+                        android:hint="@string/hint_state" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@id/appIvStateDropDown"
+                        android:tint="@color/colorIconTintForm"
+                        android:layout_width="@dimen/iv_form"
+                        android:layout_height="@dimen/iv_form"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -135,19 +187,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:drawableLeft="@drawable/mobile"
                     android:hint="@string/hint_mobile"
-                    android:inputType="phone" />
+                    android:inputType="textPassword" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium"
+                android:background="@drawable/style_edittext">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/appEdtZipCode"
+                    style="@style/styleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/hint_zip_code"
+                    android:inputType="textPassword" />
 
             </RelativeLayout>
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/appBtnSignUp"
+                android:id="@+id/llSignUp"
                 style="@style/styleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/regularSmall"
-                android:text="@string/btn_sign_up" />
+                android:text="@string/btn_submit" />
 
         </LinearLayout>
 

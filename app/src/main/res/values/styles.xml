@@ -126,7 +126,7 @@
         <item name="android:paddingBottom">@dimen/regularSmall</item>
     </style>
 
-    <style name="styleButton" parent="TextRegularSizeRegular">
+    <style name="styleButton" parent="TextSemiBoldSizeRegular">
         <item name="android:background">@drawable/style_button</item>
         <item name="android:textColor">@color/colorWhite</item>
     </style>
