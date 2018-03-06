@@ -3,7 +3,6 @@ package com.jdkgroup.connection
 import com.jdkgroup.model.api.Response
 import com.jdkgroup.model.api.countrylist.CountryResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
-import com.jdkgroup.model.request.LoginRequest
 import com.jdkgroup.model.request.SignUpRequest
 
 import java.util.HashMap
@@ -36,11 +35,14 @@ interface RestService {
     fun apiPostSignUp(@Url url: String, @Body signUpRequest : SignUpRequest): Observable<SignUpResponse>
 
     @POST
-    fun apiPostLogin(@Url url: String, @Body loginRequest: LoginRequest): Observable<SignUpResponse>
+    fun apiPostLogin(@Url url: String, @Body signUpRequest : SignUpRequest): Observable<SignUpResponse>
+
+    @POST
+    fun apiPostProfile(@Url url: String, @Body signUpRequest: SignUpRequest): Observable<SignUpResponse>
 
     @Multipart
     @POST
-    fun apiMultipartUploadUserProfilePicture(@Url url: String, @Part file: MultipartBody.Part): Observable<Response>
+    fun apiMultiPartProfilePicture(@Url url: String, @Part file: MultipartBody.Part): Observable<Response>
 
     @FormUrlEncoded
     @PUT

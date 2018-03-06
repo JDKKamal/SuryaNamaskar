@@ -5,6 +5,7 @@ import com.jdkgroup.baseclass.SimpleMVPActivity
 import com.jdkgroup.constant.RestConstant
 import com.jdkgroup.interacter.AppInteractor
 import com.jdkgroup.presenter.SplashScreenPresenter
+import com.jdkgroup.utils.AppUtils
 import com.jdkgroup.utils.Preference
 import com.jdkgroup.view.SplashScreenView
 
@@ -24,7 +25,11 @@ class SplashScreen : SimpleMVPActivity<SplashScreenPresenter, SplashScreenView>(
         appInteractor = AppInteractor()
         appInteractor!!.getDeviceInfo(activity)
 
-        presenter!!.getSplashScreenWait(SPLASH_TIME_OUT)
+        if (Preference.preferenceInstance(this).isLogin) {
+            AppUtils.startActivity(this, DrawerActivity::class.java)
+        } else {
+            presenter!!.getSplashScreenWait(SPLASH_TIME_OUT)
+        }
     }
 
     override fun createPresenter(): SplashScreenPresenter {

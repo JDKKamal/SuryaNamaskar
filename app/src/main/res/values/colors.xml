@@ -3,28 +3,21 @@
     <color name="colorPrimary">#FF6900</color>
     <color name="colorPrimaryDark">#F79E1C</color>
     <color name="colorAccent">#FF6900</color>
-
-
-    <color name="colorButton">#FF6900</color>
+    <color name="colorSettingMenu">#FFFFFF</color>
 
     <color name="colorBackground">#FFFFFF</color> <!-- FAFAFA -->
     <color name="colorIconTintForm">#BDBDBD</color>
     <color name="colorDialogSpLine">#828282</color>
 
-    <color name="colorCancel">#E91E63</color>
-
-    <color name="colorDescription">#414141</color>
-    <color name="colorPoint">#3F51B5</color>
-    <color name="colorAdpTitle">#414141</color>
-
-
     <color name="colorDialogButtonText">#FFCA28</color>
 
-    <color name="colorTotal">#828282</color>
-    <color name="colorEmailContact">#F9F9F9</color>
+    <!-- DIALOG -->
+    <color name="colorDialogTitle">#414141</color>
+
+    <color name="colorAppCloseYes">#FF6900</color>
+    <color name="colorAppCloseNo">#E0E0E0</color>
 
     <!-- DIVIDER -->
-    <color name="colorDividerGrey">#828282</color>
 
     <!-- DRAWER -->
     <color name="colorDrawerTextTint">#212121</color>
@@ -38,7 +31,6 @@
     <color name="colorItemViewByNotification">#303F9F</color>
 
     <color name="colorCount">#FFCA28</color>
-    <color name="colorCountLabel">#Afff</color>
 
     <color name="colorLine">#C0C0C0</color>
     <color name="colorLineWhite">#FFFFFF</color>
@@ -46,11 +38,7 @@
     <color name="colorTintIndicator">#D3D7D9</color>
     <color name="colorTintHideIv">#888</color>
 
-    <color name="colorDeliveryCharge">#D8A019</color>
-    <color name="colorLink">#1986EF</color>
-
-    <color name="colorFloatingButton">#3F51B5</color>
-
+    <!-- TAB -->
     <color name="colorTabBg">#3F51B5</color>
     <color name="colorTabIndicatorColor">#FFCA28</color>
     <color name="colorTabSelectedText">#FFFFFF</color>
@@ -64,58 +52,36 @@
     <color name="colorDragSelect">#Afff</color>
     <color name="colorDropSelect">#FFFFFF</color>
 
-    <color name="colorFloatingBackground">#3F51B5</color>
-    <color name="colorCalendarSelectBackground">#FFCA28</color>
-
     <color name="colorOTPResendEnable">#3F51B5</color>
     <color name="colorOTPResendDisable">#F85C5D</color>
     <color name="colorVerifyEnable">#1BAF3B</color>
     <color name="colorVerifyDisable">#F85C5D</color>
 
-    <color name="colorCredit">#1BAF3B</color>
-    <color name="colorDebit">#F85C5D</color>
-    <color name="colorTransaction">#FFCA28</color>
+    <!-- BUTTON -->
+    <color name="color_button">#FF6900</color>
+    <color name="color_button_press">#303F9F</color>
+    <color name="colorButtonNormalText">#FFFFFF</color>
 
-    <color name="color_login_button">#303F9F</color>
-    <color name="color_login_button_press">#303F9F</color>
-
-    <color name="color_signup_button">#F2F2F2</color>
-    <color name="color_signup_buttonpress">#EBEBEB</color>
-    <color name="color_primary_men">#00ACC1</color>
-    <color name="color_product_bottom">#ffffff</color>
-    <color name="color_edittext_hint">#999</color>
-
-    <color name="color_edittext_label">#fff</color>
-
-    <color name="separatorColor">#18102C</color>
-
+    <!-- EDIT TEXT -->
     <color name="colorHintEditText">#969799</color>
     <color name="colorNormalEditText">#F79E1C</color>
     <color name="colorBorderEditText">#F08600</color>
 
+    <!-- LOGIN -->
     <color name="color_or_sign_with">#939393</color>
     <color name="color_line_or">#FF6900</color>
-
     <color name="colorForgotPassword">#414141</color>
     <color name="colorSignUp">#FF6900</color>
     <color name="colorDialogSpText">#414141</color>
-    <color name="colorTitle">#414141</color>
 
-    <color name="colorButtonNormalText">#FFFFFF</color>
-    <color name="colorButtonLink">#414141</color>
-
-    <color name="colorSettingMenu">#3F51B5</color>
-    <color name="colorFloating">#3F51B5</color>
-    <color name="colorCardViewBackground">#FFFFFF</color>
-
+    <!-- CHECKBOX -->
     <color name="colorCheckBoxActive">#1BAF3B</color>
     <color name="colorCheckBoxNormal">#414141</color>
     <color name="colorCheckBoxTextActive">#1BAF3B</color>
     <color name="colorCheckBoxTextNormal">#414141</color>
     <color name="colorCheckBoxTextRed">#F85C5D</color>
 
-    <color name="colorTransparent">#00000000</color>
-
+    <!-- TAB -->
     <color name="colorTabBackground">#FFFFFF</color>
     <color name="colorTabTextNormal">#3F51B5</color>
     <color name="colorTabTextSelect">#3F51B5</color>
@@ -125,7 +91,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#F85C5D</color>
-
+    <color name="colorTransparent">#00000000</color>
 
 
 </resources>

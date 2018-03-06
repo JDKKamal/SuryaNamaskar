@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llListFAQ"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5_dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llQuestionListFAQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20_dp"
+            android:layout_marginRight="@dimen/dimen_20_dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvQuestionNoFAQElement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto regular"
+                android:paddingBottom="@dimen/dimen_10_dp"
+                android:paddingTop="@dimen/dimen_10_dp"
+                android:text="@string/itemview_no"
+                android:textColor="@color/colorSignWith"
+                android:textSize="@dimen/dimen_16_dp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvQuestionFrequentlyAskedQuestionsElement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/dimen_5_dp"
+                android:fontFamily="Roboto regular"
+                android:paddingBottom="@dimen/dimen_10_dp"
+                android:paddingTop="@dimen/dimen_10_dp"
+                android:text="@string/itemview_question"
+                android:textColor="@color/colorSignWith"
+                android:textSize="@dimen/dimen_16_dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivArrowUpDownFrequentlyAskedQuestionsElement"
+                android:layout_width="@dimen/dimen_30_dp"
+                android:layout_height="@dimen/dimen_30_dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/arrow_down" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvQuestionAnswerFrequentlyAskedQuestionsElement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20_dp"
+            android:layout_marginRight="@dimen/dimen_50_dp"
+            android:fontFamily="roboto regular"
+            android:paddingBottom="@dimen/dimen_10_dp"
+            android:paddingTop="@dimen/dimen_1_dp"
+            android:text="@string/itemview_answer"
+            android:textColor="@color/colorSignWith"
+            android:textSize="@dimen/dimen_15_dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_0_7_dp"
+            android:background="@color/colorLineHorizontal" />
+
+    </LinearLayout>
+</LinearLayout>

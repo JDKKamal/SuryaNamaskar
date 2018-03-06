@@ -6,6 +6,6 @@ import com.jdkgroup.model.api.countrylist.CountryResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
 
 interface LoginView : BaseView {
-    fun apiPostLogin(response: SignUpResponse)
+    fun apiPostLoginResponse(response: SignUpResponse)
 }
 

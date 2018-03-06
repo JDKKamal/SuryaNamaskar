@@ -1,9 +1,7 @@
 package com.jdkgroup.presenter
 
-import com.google.gson.Gson
 import com.jdkgroup.baseclass.BasePresenter
 import com.jdkgroup.interacter.InterActorCallback
-import com.jdkgroup.model.api.Response
 import com.jdkgroup.model.api.countrylist.CountryResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
 import com.jdkgroup.model.request.SignUpRequest

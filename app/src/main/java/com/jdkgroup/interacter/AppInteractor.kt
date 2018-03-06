@@ -6,7 +6,6 @@ package com.jdkgroup.interacter
  */
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -21,16 +20,18 @@ import com.jdkgroup.interacter.operators.RxAPICallDisposingObserver
 import com.jdkgroup.model.ModelOSInfo
 import com.jdkgroup.model.api.countrylist.CountryResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
-import com.jdkgroup.model.request.LoginRequest
 import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.utils.Logging
 
 import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 import java.util.ArrayList
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import com.jdkgroup.model.api.Response
+import okhttp3.MultipartBody
+
+
 
 class AppInteractor : RestConstant {
 
@@ -102,8 +103,22 @@ class AppInteractor : RestConstant {
                 .subscribe(RxAPICallDisposingObserver(context, callback))
     }
 
-    fun apiPostLogin(context: Context, loginRequest: LoginRequest, callback: InterActorCallback<SignUpResponse>) {
-        RestClient(context).service.apiPostLogin(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_LOGIN, loginRequest)
+    fun apiPostLogin(context: Context, signUpRequest: SignUpRequest, callback: InterActorCallback<SignUpResponse>) {
+        RestClient(context).service.apiPostLogin(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_LOGIN, signUpRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(RxAPICallDisposingObserver(context, callback))
+    }
+
+    fun apiPostProfile(context: Context, signUpRequest: SignUpRequest, callback: InterActorCallback<SignUpResponse>) {
+        RestClient(context).service.apiPostProfile(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_PROFILE, signUpRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(RxAPICallDisposingObserver(context, callback))
+    }
+
+    fun apiMultiPartProfilePicture(context: Context, file: MultipartBody.Part, callback: InterActorCallback<Response>) {
+        RestClient(context).service.apiMultiPartProfilePicture(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_MULTIPART_UPLOAD_USER_PROFILE_PICTURE, file)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(RxAPICallDisposingObserver(context, callback))

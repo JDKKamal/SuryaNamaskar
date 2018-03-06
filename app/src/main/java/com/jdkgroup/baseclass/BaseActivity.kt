@@ -21,6 +21,8 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.*
 import android.text.InputFilter
+import android.text.InputType
+import android.text.Spanned
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
@@ -87,19 +89,6 @@ abstract class BaseActivity : AppCompatActivity() {
             return intArrayOf(size.x, size.y)
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
-    }
-
-    override fun onDestroy() {
-        //DisposableManager.dispose();
-        super.onDestroy()
-    }
-
     protected fun setContentViewWithoutInject(layoutResId: Int) {
         super.setContentView(layoutResId)
     }
@@ -135,7 +124,6 @@ abstract class BaseActivity : AppCompatActivity() {
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
-
     }
 
     protected fun getStringFromId(id: Int): String? {
@@ -144,7 +132,6 @@ abstract class BaseActivity : AppCompatActivity() {
             str = this.getString(id)
         } catch (e: Exception) {
         }
-
         return str
     }
 
@@ -171,12 +158,28 @@ abstract class BaseActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Logging.e("Exception on  show " + e.toString())
         }
-
     }
 
     protected fun requestEditTextFocus(view: AppCompatEditText) {
         view.requestFocus()
         showKeyboard(view)
+    }
+
+    protected fun appEdiTextNullSet(id: Int) {
+        findViewById<AppCompatEditText>(id).text = null
+    }
+
+    protected fun appEdiTextGetString(id: Int): String {
+        return findViewById<AppCompatEditText>(id).text.toString()
+    }
+
+    protected fun appEditTextLowerCaseOnly(id: Int)
+    {
+        findViewById<AppCompatEditText>(id).filters = arrayOf<InputFilter>(object : InputFilter.AllCaps() {
+            override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int): CharSequence {
+                return source.toString().toLowerCase()
+            }
+        })
     }
 
     protected fun checkParams(map: MutableMap<String, String>): Map<String, String> {
@@ -245,10 +248,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 
     override fun attachBaseContext(newBase: Context) {
@@ -436,12 +435,18 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun appExist() {
-        val alert = AlertDialog.Builder(this, R.style.AlertDialog)
-        alert.setTitle(R.string.app_name)
-        alert.setMessage(R.string.dialog_message_app_exist)
-        alert.setPositiveButton(R.string.dialog_ok) { dialog, id -> this.finish() }
-        alert.setNegativeButton(R.string.dialog_cancel, null)
-        alert.show()
+        val builder = AlertDialog.Builder(this)
+        val alertDialog = builder.create()
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_app_close, null)
+        alertDialog.setView(dialogView)
+
+        val appTvYes = dialogView.findViewById(R.id.appTvYes) as AppCompatTextView
+        val appTvNo = dialogView.findViewById(R.id.appTvNo) as AppCompatTextView
+        appTvYes.setOnClickListener({ finish() })
+        appTvNo.setOnClickListener({ alertDialog.dismiss() })
+
+        alertDialog.show()
     }
 
     protected fun getFileDelete(fileName: String) {

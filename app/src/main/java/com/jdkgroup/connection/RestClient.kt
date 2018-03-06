@@ -48,11 +48,14 @@ open class RestClient (context: Context) : RestConstant {
             val requestBuilder = original.newBuilder()
             requestBuilder.header("Accept", "application/json")
             requestBuilder.method(original.method(), original.body())
+/*
 
-            /*if (tokenManager.hasToken()) {
+            if (tokenManager.hasToken()) {
                 Logging.INSTANCE.i(tokenManager.getToken());
                 requestBuilder.header("Authorization", tokenManager.getToken());
-            }*/
+            }
+*/
+
             val request = requestBuilder.build()
             val response = chain.proceed(request)
 
