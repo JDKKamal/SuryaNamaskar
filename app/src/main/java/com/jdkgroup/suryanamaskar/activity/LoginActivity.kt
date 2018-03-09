@@ -14,12 +14,13 @@ import com.jdkgroup.customview.socialintegration.googleintegration.GoogleLoginHe
 import com.jdkgroup.customview.socialintegration.googleintegration.GoogleLoginListener
 import com.jdkgroup.customview.socialintegration.googleintegration.GoogleLoginModel
 import com.jdkgroup.model.api.signup.SignUpResponse
-import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.presenter.LoginPresenter
 import com.jdkgroup.suryanamaskar.DrawerActivity
 import com.jdkgroup.suryanamaskar.R
+import com.jdkgroup.suryanamaskar.Validator
 import com.jdkgroup.utils.AppUtils
-import com.jdkgroup.utils.Preference
+import com.jdkgroup.utils.PreferenceUtils
+import com.jdkgroup.utils.logInfo
 import com.jdkgroup.view.LoginView
 
 class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView, FacebookLoginListener, GoogleLoginListener {
@@ -33,7 +34,7 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
 
         hideSoftKeyboard()
 
-        if (Preference.preferenceInstance(this).isLogin) {
+        if (PreferenceUtils.preferenceInstance(this).isLogin) {
             AppUtils.startActivity(this, DrawerActivity::class.java)
         }
 
@@ -43,9 +44,20 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
                     val email = appEdiTextGetString(R.id.appEdtEmail)
                     val password = appEdiTextGetString(R.id.appEdtPassword)
 
-                    if (presenter!!.validation(email, password, this)) {
-                        presenter!!.apiCall(RestConstant.CALL_API_LOGIN, SignUpRequest(email, password))
-                    }
+                    val validator = Validator(password)
+                    var result: Boolean = validator.atLeastOneNumber()
+                            .nonEmpty()
+                            .minimumLength(8)
+                            .maximumLength(32)
+                            .atLeastOneSpecialCharacter()
+                            .validate()
+
+                    logInfo(result.toString())
+
+
+                    //if (presenter!!.validation(email, password, this)) {
+                    //presenter!!.apiCall(RestConstant.CALL_API_LOGIN, SignUpRequest(email, password))
+                    //}
                 }
         )
 
@@ -77,10 +89,10 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
     //LOGIN
     override fun apiPostLoginResponse(response: SignUpResponse) {
         if (response.response!!.status == RestConstant.ok_200) {
-            Preference.preferenceInstance(this).isLogin = true
-            Preference.preferenceInstance(this).userId = response.signup!!.userid!!
-            Preference.preferenceInstance(this).userName = response.signup!!.username!!
-            Preference.preferenceInstance(this).email = response.signup!!.email!!
+            PreferenceUtils.preferenceInstance(this).isLogin = true
+            PreferenceUtils.preferenceInstance(this).userId = response.signup!!.userid!!
+            PreferenceUtils.preferenceInstance(this).userName = response.signup!!.username!!
+            PreferenceUtils.preferenceInstance(this).email = response.signup!!.email!!
 
             AppUtils.startActivity(this, DrawerActivity::class.java)
             finish()

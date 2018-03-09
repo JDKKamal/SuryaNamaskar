@@ -9,7 +9,7 @@ import android.view.MenuItem
 import com.jdkgroup.baseclass.BaseActivity
 import com.jdkgroup.suryanamaskar.activity.ProfileActivity
 import com.jdkgroup.utils.AppUtils
-import com.jdkgroup.utils.Preference
+import com.jdkgroup.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 
@@ -43,7 +43,7 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                Preference.preferenceInstance(this).isLogin = false
+                PreferenceUtils.preferenceInstance(this).isLogin = false
             }
             R.id.nav_gallery -> {
                 AppUtils.startActivity(this, ProfileActivity::class.java);

@@ -1,18 +1,19 @@
 package com.jdkgroup.suryanamaskar.activity
 
+import android.Manifest
 import android.os.Bundle
 import android.support.v7.widget.AppCompatButton
 import com.jdkgroup.baseclass.SimpleMVPActivity
 import com.jdkgroup.constant.RestConstant
-import com.jdkgroup.customview.rximagepicker.Sources
 import com.jdkgroup.model.api.signup.SignUpResponse
 import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.presenter.ProfilePresenter
 import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.utils.AppUtils
-import com.jdkgroup.utils.ImagePicker
-import com.jdkgroup.utils.Preference
+import com.jdkgroup.utils.PreferenceUtils
 import com.jdkgroup.view.ProfileView
+import com.jdkgroup.customview.permission.askPermissions
+import com.jdkgroup.customview.permission.handlePermissionsResult
 
 class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), ProfileView {
 
@@ -21,19 +22,8 @@ class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), Prof
         setContentView(R.layout.activity_profile)
 
         hideSoftKeyboard()
-        ImagePicker().pickImageFromSource(this, Sources.GALLERY, null, 2)
 
-        //TODO UPDATE PROFILE
-        findViewById<AppCompatButton>(R.id.appBtnSubmit).setOnClickListener(
-                {
-                    val username = appEdiTextGetString(R.id.appEdtUserName)
-                    val mobile = appEdiTextGetString(R.id.appEdtMobile)
-                    val pincode = appEdiTextGetString(R.id.appEdtPinCode)
-                    val address = appEdiTextGetString(R.id.appEdtAddress)
-
-                    presenter!!.callApiPostProfile(SignUpRequest(Preference.preferenceInstance(this).userId, username,  Preference.preferenceInstance(this).email, "kamal", 1, mobile, "0", "0", pincode, address));
-                }
-        )
+        permission()
     }
 
     override fun createPresenter(): ProfilePresenter {
@@ -53,9 +43,9 @@ class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), Prof
     //PROFILE
     override fun apiPostProfileResponse(response: SignUpResponse) {
         if (response.response!!.status == RestConstant.ok_200) {
-            Preference.preferenceInstance(this).userId = response.signup!!.userid!!
-            Preference.preferenceInstance(this).userName = response.signup!!.username!!
-            Preference.preferenceInstance(this).email = response.signup!!.email!!
+            PreferenceUtils.preferenceInstance(this).userId = response.signup!!.userid!!
+            PreferenceUtils.preferenceInstance(this).userName = response.signup!!.username!!
+            PreferenceUtils.preferenceInstance(this).email = response.signup!!.email!!
         }
         AppUtils.showToast(this, response.response!!.message + "")
     }
@@ -63,5 +53,66 @@ class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), Prof
 
     override fun onBackPressed() {
         finish()
+    }
+
+    private fun permission() {
+        askPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE) {
+            onGranted {
+                //TODO UPDATE PROFILE
+                findViewById<AppCompatButton>(R.id.appBtnSubmit).setOnClickListener(
+                        {
+                            val username = appEdiTextGetString(R.id.appEdtUserName)
+                            val mobile = appEdiTextGetString(R.id.appEdtMobile)
+                            val pincode = appEdiTextGetString(R.id.appEdtPinCode)
+                            val address = appEdiTextGetString(R.id.appEdtAddress)
+
+                            presenter!!.callApiPostProfile(SignUpRequest(PreferenceUtils.preferenceInstance(activity).userId, username, PreferenceUtils.preferenceInstance(activity).email, "kamal", 1, mobile, "0", "0", pincode, address));
+                        }
+                )
+            }
+
+            onDenied {
+                it.forEach {
+                    when (it) {
+                        Manifest.permission.CALL_PHONE ->  AppUtils.showToast(activity, "Call Phone is denied")
+                        Manifest.permission.READ_SMS ->AppUtils.showToast(activity, "Read Sms is denied")
+                    }
+                }
+            }
+
+            onShowRationale { request ->
+                var permissions = ""
+                request.permissions.forEach {
+
+                    permissions += when (it) {
+                        Manifest.permission.CALL_PHONE -> " Call Phone"
+                        Manifest.permission.READ_SMS -> " Read Sms"
+                        else -> ""
+                    }
+
+                }
+
+                snack("You should grant permission for $permissions") {
+                    request.retry()
+                }
+            }
+
+            onNeverAskAgain {
+                it.forEach {
+                    when (it) {
+                        Manifest.permission.CALL_PHONE ->  AppUtils.showToast(activity, "Never ask again for Call Phone")
+                        Manifest.permission.READ_SMS -> AppUtils.showToast(activity, "Never ask again for Read Sms")
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        handlePermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun snack(message: String, action: () -> Unit = {}) {
+
     }
 }

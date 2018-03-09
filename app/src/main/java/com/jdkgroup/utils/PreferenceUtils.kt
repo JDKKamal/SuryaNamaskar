@@ -7,19 +7,19 @@ import com.jdkgroup.constant.AppConstant
 
 import android.content.Context.MODE_PRIVATE
 
-open class Preference private constructor(private val mContext: Context) : AppConstant {
+open class PreferenceUtils private constructor(private val mContext: Context) : AppConstant {
     private val sharedPreferences: SharedPreferences
 
     companion object {
         private val SP_NAME = "suryanamskar"
-        private var preference: Preference? = null
+        private var preferenceUtils: PreferenceUtils? = null
 
-        fun preferenceInstance(mContext: Context): Preference {
-            return Preference(mContext)
+        fun preferenceInstance(context: Context): PreferenceUtils {
+            return PreferenceUtils(context)
         }
 
         private fun removeInstance() {
-            preference = null
+            preferenceUtils = null
         }
     }
 
@@ -65,6 +65,10 @@ open class Preference private constructor(private val mContext: Context) : AppCo
     var email: String
         get() = sharedPreferences.getString(AppConstant.Companion.SP_EMAIL, "")
         set(email) = sharedPreferences.edit().putString(AppConstant.Companion.SP_EMAIL, email).apply()
+
+    var profilepicture: String
+        get() = sharedPreferences.getString(AppConstant.Companion.SP_PROFILE_PICTURE, "")
+        set(profilePicture) = sharedPreferences.edit().putString(AppConstant.Companion.SP_PROFILE_PICTURE, profilePicture).apply()
 
     var loginStatus: Int
         get() = sharedPreferences.getInt(AppConstant.Companion.SP_LOGIN_STATUS, 0)

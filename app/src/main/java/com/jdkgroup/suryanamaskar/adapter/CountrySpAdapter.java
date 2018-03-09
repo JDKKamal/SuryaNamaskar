@@ -10,14 +10,9 @@ import android.view.ViewGroup;
 import com.jdkgroup.suryanamaskar.R;
 import com.jdkgroup.model.api.countrylist.ModelCountry;
 import com.jdkgroup.suryanamaskar.dialog.SpDialogCountry;
-import com.jdkgroup.utils.Logging;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class CountrySpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;

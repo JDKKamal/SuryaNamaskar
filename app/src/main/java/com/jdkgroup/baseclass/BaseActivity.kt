@@ -21,7 +21,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.*
 import android.text.InputFilter
-import android.text.InputType
 import android.text.Spanned
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -34,7 +33,7 @@ import com.google.gson.GsonBuilder
 import com.jdkgroup.constant.AppConstant
 import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.utils.AppUtils
-import com.jdkgroup.utils.Logging
+import com.jdkgroup.utils.logInfo
 import org.parceler.Parcels
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.File
@@ -52,8 +51,8 @@ abstract class BaseActivity : AppCompatActivity() {
     private var calendar: Calendar? = null
 
     private var layoutManager: LinearLayoutManager? = null
-    protected var recyclerViewLinearLayout = 0
-    protected var recyclerViewGridLayout = 1
+     var recyclerViewLinearLayout = 0
+     var recyclerViewGridLayout = 1
 
     val defaultParameter: HashMap<String, String>
         get() {
@@ -70,7 +69,7 @@ abstract class BaseActivity : AppCompatActivity() {
     open val activity: Activity
         get() = this
 
-    protected val isInternet: Boolean
+     val isInternet: Boolean
         get() {
             val connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             @SuppressLint("MissingPermission") val networkInfo = connectivityManager.activeNetworkInfo
@@ -89,7 +88,7 @@ abstract class BaseActivity : AppCompatActivity() {
             return intArrayOf(size.x, size.y)
         }
 
-    protected fun setContentViewWithoutInject(layoutResId: Int) {
+     fun setContentViewWithoutInject(layoutResId: Int) {
         super.setContentView(layoutResId)
     }
 
@@ -101,7 +100,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(menuItem)
     }
 
-    protected fun toolBarSetFont(toolBar: Toolbar) {
+     fun toolBarSetFont(toolBar: Toolbar) {
         for (i in 0 until toolBar.childCount) {
             val view = toolBar.getChildAt(i)
             if (view is TextView) {
@@ -114,7 +113,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun hideSoftKeyboard() {
+     fun hideSoftKeyboard() {
         try {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -126,7 +125,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun getStringFromId(id: Int): String? {
+     fun getStringFromId(id: Int): String? {
         var str: String? = null
         try {
             str = this.getString(id)
@@ -137,7 +136,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     //SCREEN SIZE
-    protected fun getScreenSize(activity: Activity): IntArray {
+     fun getScreenSize(activity: Activity): IntArray {
         val size = Point()
         val w = activity.windowManager
 
@@ -145,35 +144,35 @@ abstract class BaseActivity : AppCompatActivity() {
         return intArrayOf(size.x, size.y)
     }
 
-    protected fun setFullScreen(activity: Activity) {
+     fun setFullScreen(activity: Activity) {
         activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
-    protected fun showKeyboard(appCompatEditText: AppCompatEditText) {
+    fun showKeyboard(appCompatEditText: AppCompatEditText) {
         try {
             if (this != null) {
                 val inputManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputManager.showSoftInput(appCompatEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         } catch (e: Exception) {
-            Logging.e("Exception on  show " + e.toString())
+            logInfo("Exception on  show " + e.toString())
         }
     }
 
-    protected fun requestEditTextFocus(view: AppCompatEditText) {
+     fun requestEditTextFocus(view: AppCompatEditText) {
         view.requestFocus()
         showKeyboard(view)
     }
 
-    protected fun appEdiTextNullSet(id: Int) {
+     fun appEdiTextNullSet(id: Int) {
         findViewById<AppCompatEditText>(id).text = null
     }
 
-    protected fun appEdiTextGetString(id: Int): String {
+     fun appEdiTextGetString(id: Int): String {
         return findViewById<AppCompatEditText>(id).text.toString()
     }
 
-    protected fun appEditTextLowerCaseOnly(id: Int)
+     fun appEditTextLowerCaseOnly(id: Int)
     {
         findViewById<AppCompatEditText>(id).filters = arrayOf<InputFilter>(object : InputFilter.AllCaps() {
             override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int): CharSequence {
@@ -182,7 +181,7 @@ abstract class BaseActivity : AppCompatActivity() {
         })
     }
 
-    protected fun checkParams(map: MutableMap<String, String>): Map<String, String> {
+     fun checkParams(map: MutableMap<String, String>): Map<String, String> {
         val entryIterator = map.entries.iterator()
         while (entryIterator.hasNext()) {
             val pairs = entryIterator.next()
@@ -202,7 +201,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun showProgressDialog() {
+     fun showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = Dialog(this)
         } else {
@@ -225,7 +224,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //HIDE PROGRESSBAR
-    protected fun hideProgressDialog() {
+     fun hideProgressDialog() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
             progressDialog = null
@@ -254,13 +253,13 @@ abstract class BaseActivity : AppCompatActivity() {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
-    protected fun showSnackBar(coordinatorLayout: CoordinatorLayout, message: String) {
+     fun showSnackBar(coordinatorLayout: CoordinatorLayout, message: String) {
         val snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT)
         snackbar.show()
     }
 
     //TODO RECYCLERVIEW
-    protected fun setRecyclerView(recyclerView: RecyclerView, spanCount: Int, no: Int): LinearLayoutManager? {
+     fun setRecyclerView(recyclerView: RecyclerView, spanCount: Int, no: Int): LinearLayoutManager? {
         when (no) {
             0 -> {
                 layoutManager = LinearLayoutManager(activity)
@@ -280,24 +279,24 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //TODO GSON
-    protected fun getToJson(alData: Any?): Any {
+     fun getToJson(alData: Any?): Any {
         return Gson().toJson(alData)
     }
 
-    protected fun getToJsonClass(src: Any): String {
+     fun getToJsonClass(src: Any): String {
         return Gson().toJson(src)
     }
 
-    protected fun <T> getFromJson(str: String, classType: Class<T>): T {
+     fun <T> getFromJson(str: String, classType: Class<T>): T {
         return Gson().fromJson(str, classType)
     }
 
     @Throws(Exception::class)
-    protected fun <T> fromJson(file: File, clazz: Class<T>): T {
+     fun <T> fromJson(file: File, clazz: Class<T>): T {
         return Gson().fromJson(FileReader(file.absoluteFile), clazz)
     }
 
-    protected fun switchGson(param: Int): Gson? {
+     fun switchGson(param: Int): Gson? {
         when (param) {
             1 -> return GsonBuilder().create()
 
@@ -317,7 +316,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //Parcel
-    protected fun launchIsClearParcelable(classType: Class<*>, bundle: Bundle, status: Int) {
+     fun launchIsClearParcelable(classType: Class<*>, bundle: Bundle, status: Int) {
         val intent = Intent(this, classType)
         if (status == 0) {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -326,7 +325,7 @@ abstract class BaseActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    protected fun launchParcel(classType: Class<*>, data: Bundle, status: Int) {
+     fun launchParcel(classType: Class<*>, data: Bundle, status: Int) {
         val intent = Intent(activity, classType)
         if (status == 0) {
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
@@ -340,11 +339,11 @@ abstract class BaseActivity : AppCompatActivity() {
      * Bundle bundle = new Bundle();
      * bundle.putParcelable(bundleName, Parcels.wrap(alData));
      * */
-    protected fun <T> getParcelable(bundleName: String): T? {
+     fun <T> getParcelable(bundleName: String): T? {
         return Parcels.unwrap<T>(activity.intent.getParcelableExtra<Parcelable>(bundleName))
     }
 
-    protected fun launch(classType: Class<*>, bundle: Bundle, addFlag: Int) {
+     fun launch(classType: Class<*>, bundle: Bundle, addFlag: Int) {
         when (addFlag) {
             1 //NO BUNDLE AND NO CLEAR
             -> startActivity(Intent(activity, classType).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT))
@@ -360,7 +359,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun <T> getUnionList(first: MutableList<T>, last: List<T>): List<*> {
+     fun <T> getUnionList(first: MutableList<T>, last: List<T>): List<*> {
         if (isEmptyList(first) && isEmptyList(last)) {
             first.addAll(last)
             return first
@@ -370,15 +369,15 @@ abstract class BaseActivity : AppCompatActivity() {
         return last
     }
 
-    protected fun isEmptyList(list: List<*>?): Boolean {
+     fun isEmptyList(list: List<*>?): Boolean {
         return list != null && !list.isEmpty()
     }
 
-    protected fun hasLollipop(): Boolean {
+     fun hasLollipop(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
     }
 
-    protected fun hasM(): Boolean {
+     fun hasM(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
 
@@ -395,7 +394,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /* TODO LAUNCH ACTIVITY/FRAGMENT ANIMATION*/
-    protected fun intentOpenBrowser(url: String) {
+     fun intentOpenBrowser(url: String) {
         if (isInternet) {
             startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)))
         } else {
@@ -404,7 +403,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //TODO FILE SAVE
-    protected fun getImageFileFromSDCard(filename: String): Bitmap? {
+     fun getImageFileFromSDCard(filename: String): Bitmap? {
         var bitmap: Bitmap? = null
         val imageFile = File(Environment.getExternalStorageDirectory().toString() + File.separator + filename)
         try {
@@ -417,7 +416,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return bitmap
     }
 
-    protected fun getSaveImageSDCard(bitmap: Bitmap, filename: String) {
+     fun getSaveImageSDCard(bitmap: Bitmap, filename: String) {
         val fileMakeDirectory = File(Environment.getExternalStorageDirectory().toString() + File.separator + AppConstant.FOLDER_NAME)
         fileMakeDirectory.mkdirs()
 
@@ -434,7 +433,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    protected fun appExist() {
+     fun appExist() {
         val builder = AlertDialog.Builder(this)
         val alertDialog = builder.create()
         val inflater = this.layoutInflater
@@ -449,22 +448,22 @@ abstract class BaseActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    protected fun getFileDelete(fileName: String) {
+     fun getFileDelete(fileName: String) {
         val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + AppConstant.FOLDER_NAME + File.separator + fileName)
         val deleted = file.delete()
         if (deleted == true)
-            Logging.i("Delete successful")
-        Logging.i("Delete not successful")
+            logInfo("Delete successful")
+        logInfo("Delete not successful")
     }
 
 
-    protected fun IsHasSDCard(): Boolean {
+     fun IsHasSDCard(): Boolean {
         val status = Environment.getExternalStorageState()
         return status == Environment.MEDIA_MOUNTED
     }
 
     //For take screenshot with status bar return Bitmap
-    protected fun nbGetScreenShotWithStatusBar(): Bitmap {
+     fun nbGetScreenShotWithStatusBar(): Bitmap {
         val view = this.window.decorView
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
@@ -476,7 +475,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //For take screenshot without status bar return Bitmap
-    protected fun nbGetScreenShotWithoutStatusBar(): Bitmap {
+     fun nbGetScreenShotWithoutStatusBar(): Bitmap {
         val view = this.window.decorView
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
@@ -489,11 +488,11 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     //DISABLE SCREEN CAPTURE
-    protected fun disableScreenshotFunctionality() {
+     fun disableScreenshotFunctionality() {
         activity.window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
     }
 
-    protected fun getDateDifference(startDate: Date, endDate: Date): String {
+     fun getDateDifference(startDate: Date, endDate: Date): String {
         try {
             var different = endDate.time - startDate.time
             if (different <= 0) {

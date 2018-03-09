@@ -27,11 +27,19 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.ProfileActivity" />
+       <!-- <activity android:name=".activity.ProfileActivity" />-->
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
+        <!-- START FIREBASE SERVICE -->
+        <service android:name="com.jdkgroup.notification.AppFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- END FIREBASE SERVICE -->
 
     </application>
 

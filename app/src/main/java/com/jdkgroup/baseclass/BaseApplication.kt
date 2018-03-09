@@ -9,9 +9,9 @@ package com.jdkgroup.baseclass
 import android.support.multidex.MultiDex
 import android.support.multidex.MultiDexApplication
 
-import com.facebook.stetho.Stetho
 import com.jdkgroup.suryanamaskar.R
-import com.jdkgroup.utils.Logging
+import com.jdkgroup.utils.LogLevel
+import com.jdkgroup.utils.LogUtils
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
@@ -20,11 +20,10 @@ class BaseApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
+        LogUtils.addLevel(LogLevel.ALL)
         baseApplication = this
 
         MultiDex.install(this)
-        Logging.isDebugLogging = Logging.isDebugLogging
 
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
                 .setDefaultFontPath(this.getString(R.string.regular_font))

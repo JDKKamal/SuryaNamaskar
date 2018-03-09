@@ -29,6 +29,7 @@ interface AppConstant {
         val SP_FCM_TOKEN = "fcm_token"
         val SP_USERNAME = "name"
         val SP_EMAIL = "email"
+        val SP_PROFILE_PICTURE = "profile_picture"
         val SP_MOBILE = "mobile"
         val SP_SOCIAL_ID = "social_id"
         val SP_DEVICE_ID = "device_id"

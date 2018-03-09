@@ -3,7 +3,7 @@ package com.jdkgroup.connection
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.jdkgroup.constant.RestConstant
-import com.jdkgroup.utils.Logging
+import com.jdkgroup.utils.logInfo
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -59,9 +59,9 @@ open class RestClient (context: Context) : RestConstant {
             val request = requestBuilder.build()
             val response = chain.proceed(request)
 
-            Logging.i("----------------- API CALL -----------------")
-            Logging.i("Response " + response)
-            Logging.i("--------------------------------------------")
+            logInfo("----------------- API CALL -----------------")
+            logInfo("Response " + response)
+            logInfo("--------------------------------------------")
 
             val data = response.body()!!.string()
 

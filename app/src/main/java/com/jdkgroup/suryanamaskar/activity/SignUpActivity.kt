@@ -12,10 +12,7 @@ import com.jdkgroup.presenter.SignUpPresenter
 import com.jdkgroup.suryanamaskar.DrawerActivity
 import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.suryanamaskar.dialog.SpDialogCountry
-import com.jdkgroup.utils.AppUtils
-import com.jdkgroup.utils.Logging
-import com.jdkgroup.utils.Preference
-import com.jdkgroup.utils.Validator
+import com.jdkgroup.utils.*
 import com.jdkgroup.view.SignUpView
 
 class SignUpActivity : SimpleMVPActivity<SignUpPresenter, SignUpView>(), SignUpView {
@@ -58,17 +55,17 @@ class SignUpActivity : SimpleMVPActivity<SignUpPresenter, SignUpView>(), SignUpV
     override fun apiGetCountryList(response: CountryResponse) {
         val dialogCountry = SpDialogCountry(this, getStringFromId(R.string.dialog_title_select_country), SpDialogCountry.OnItemClick { `object` ->
             val modelCountry = `object` as ModelCountry
-            Logging.d(getToJsonClass(modelCountry))
+            logJson(getToJsonClass(modelCountry))
         }, response.listCountry)
         dialogCountry.show()
     }
 
     override fun apiPostSignUp(response: SignUpResponse) {
         if (response.response!!.status == 200) {
-            Preference.preferenceInstance(this).isLogin = true
-            Preference.preferenceInstance(this).userId = response.signup!!.userid!!
-            Preference.preferenceInstance(this).userName = response.signup!!.username!!
-            Preference.preferenceInstance(this).email = response.signup!!.email!!
+            PreferenceUtils.preferenceInstance(this).isLogin = true
+            PreferenceUtils.preferenceInstance(this).userId = response.signup!!.userid!!
+            PreferenceUtils.preferenceInstance(this).userName = response.signup!!.username!!
+            PreferenceUtils.preferenceInstance(this).email = response.signup!!.email!!
 
             AppUtils.startActivity(this, DrawerActivity::class.java)
             finish()

@@ -21,7 +21,6 @@ import com.jdkgroup.model.ModelOSInfo
 import com.jdkgroup.model.api.countrylist.CountryResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
 import com.jdkgroup.model.request.SignUpRequest
-import com.jdkgroup.utils.Logging
 
 import java.security.MessageDigest
 import java.util.ArrayList
@@ -29,9 +28,8 @@ import java.util.ArrayList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import com.jdkgroup.model.api.Response
+import com.jdkgroup.utils.logInfo
 import okhttp3.MultipartBody
-
-
 
 class AppInteractor : RestConstant {
 
@@ -79,7 +77,7 @@ class AppInteractor : RestConstant {
                 md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
                 val facebookKeyBase64 = String(Base64.encode(md.digest(), 0))
-                Logging.i(facebookKeyBase64)
+                logInfo(facebookKeyBase64)
                 //String facebookkeyBase64new = new String(Base64.encodeBytes(md.digest()));
             }
         } catch (e: Exception) {

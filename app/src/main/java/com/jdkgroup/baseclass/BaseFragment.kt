@@ -4,16 +4,13 @@ package com.jdkgroup.baseclass
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.app.Dialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Point
 import android.graphics.Rect
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -25,18 +22,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.InputFilter
-import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -46,7 +40,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.interacter.disposablemanager.DisposableManager
-import com.jdkgroup.utils.Logging
+import com.jdkgroup.utils.logError
 import org.parceler.Parcels
 
 import java.io.File
@@ -78,7 +72,7 @@ abstract class BaseFragment : Fragment() {
             return params
         }
 
-    protected val isInternet: Boolean
+     val isInternet: Boolean
         get() {
             val connectivityManager = activity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             @SuppressLint("MissingPermission") val networkInfo = connectivityManager.activeNetworkInfo
@@ -88,11 +82,11 @@ abstract class BaseFragment : Fragment() {
             return true
         }
 
-    protected fun uuidRandom(): UUID {
+     fun uuidRandom(): UUID {
         return UUID.randomUUID()
     }
 
-    protected val currentDate: Date
+     val currentDate: Date
         get() = Date()
 
     //For Get the screen dimensions
@@ -125,7 +119,7 @@ abstract class BaseFragment : Fragment() {
         super.onDetach()
     }
 
-    protected fun isData(llDataPresent: LinearLayout, llDataNo: LinearLayout, status: Int) {
+     fun isData(llDataPresent: LinearLayout, llDataNo: LinearLayout, status: Int) {
         when (status) {
             0 -> {
                 llDataPresent.visibility = View.GONE
@@ -139,7 +133,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    protected fun hideSoftKeyboard() {
+     fun hideSoftKeyboard() {
         try {
             activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             val imm = activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -152,14 +146,14 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    protected fun showKeyboard(appCompatEditText: AppCompatEditText) {
+     fun showKeyboard(appCompatEditText: AppCompatEditText) {
         try {
             if (activity != null) {
                 val inputManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputManager.showSoftInput(appCompatEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         } catch (e: Exception) {
-            Logging.e("Exception on show " + e.toString())
+            logError("Exception on show " + e.toString())
         }
 
     }
@@ -180,7 +174,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     //SHOW PROGRESSBAR
-    protected fun showProgressBar() {
+    fun showProgressBar() {
         if (progressDialog == null) {
             progressDialog = Dialog(activity!!)
         }
@@ -201,7 +195,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     //HIDE PROGRESSBAR
-    protected fun hideProgressDialog() {
+    fun hideProgressDialog() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
             progressDialog = null
@@ -216,7 +210,7 @@ abstract class BaseFragment : Fragment() {
         // logoutUser(msg);
     }
 
-    protected fun checkParams(map: MutableMap<String, String>): Map<String, String> {
+    fun checkParams(map: MutableMap<String, String>): Map<String, String> {
         val entryIterator = map.entries.iterator()
         while (entryIterator.hasNext()) {
             val pairs = entryIterator.next()
@@ -228,7 +222,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     //TODO RECYCLERVIEW
-    protected fun setRecyclerView(recyclerView: RecyclerView, spanCount: Int, no: Int): LinearLayoutManager? {
+     fun setRecyclerView(recyclerView: RecyclerView, spanCount: Int, no: Int): LinearLayoutManager? {
         when (no) {
             0 -> {
                 layoutManager = LinearLayoutManager(activity)
@@ -249,24 +243,24 @@ abstract class BaseFragment : Fragment() {
     }
 
     //TODO GSON
-    protected fun getToJson(alData: List<*>): String {
+     fun getToJson(alData: List<*>): String {
         return Gson().toJson(alData)
     }
 
-    protected fun getToJsonClass(src: Any): String {
+     fun getToJsonClass(src: Any): String {
         return Gson().toJson(src)
     }
 
-    protected fun <T> getFromJson(str: String, classType: Class<T>): T {
+     fun <T> getFromJson(str: String, classType: Class<T>): T {
         return Gson().fromJson(str, classType)
     }
 
     @Throws(Exception::class)
-    protected fun <T> fromJson(file: File, clazz: Class<T>): T {
+     fun <T> fromJson(file: File, clazz: Class<T>): T {
         return Gson().fromJson(FileReader(file.absoluteFile), clazz)
     }
 
-    protected fun switchGson(param: Int): Gson? {
+     fun switchGson(param: Int): Gson? {
         when (param) {
             1 -> return GsonBuilder().create()
 
@@ -279,11 +273,11 @@ abstract class BaseFragment : Fragment() {
     }
 
     /* TODO LAUNCH FRAGMENT */
-    protected fun <T> getParcelable(bundleName: String): T? {
+     fun <T> getParcelable(bundleName: String): T? {
         return Parcels.unwrap<T>(activity!!.intent.getParcelableExtra<Parcelable>(bundleName))
     }
 
-    protected fun launch(classType: Class<*>, bundle: Bundle, addFlag: Int) {
+     fun launch(classType: Class<*>, bundle: Bundle, addFlag: Int) {
         when (addFlag) {
             1 //NO BUNDLE AND NO CLEAR
             -> startActivity(Intent(activity, classType).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT))
@@ -299,7 +293,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    protected fun <T> getUnionList(first: MutableList<T>, last: List<T>): List<*> {
+     fun <T> getUnionList(first: MutableList<T>, last: List<T>): List<*> {
         if (isEmptyList(first) && isEmptyList(last)) {
             first.addAll(last)
             return first
@@ -309,15 +303,15 @@ abstract class BaseFragment : Fragment() {
         return last
     }
 
-    protected fun isEmptyList(list: List<*>?): Boolean {
+     fun isEmptyList(list: List<*>?): Boolean {
         return list != null && !list.isEmpty()
     }
 
-    protected fun hasLollipop(): Boolean {
+     fun hasLollipop(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
     }
 
-    protected fun hasM(): Boolean {
+     fun hasM(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
 
@@ -333,7 +327,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    protected fun intentOpenBrowser(url: String) {
+     fun intentOpenBrowser(url: String) {
         if (isInternet) {
             startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)))
         } else {
@@ -341,13 +335,13 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    protected fun IsHasSDCard(): Boolean {
+     fun IsHasSDCard(): Boolean {
         val status = Environment.getExternalStorageState()
         return status == Environment.MEDIA_MOUNTED
     }
 
     //For take screenshot with status bar return Bitmap
-    protected fun nbGetScreenShotWithStatusBar(activity: Activity): Bitmap? {
+     fun nbGetScreenShotWithStatusBar(activity: Activity): Bitmap? {
         val view = activity.window.decorView
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
@@ -361,7 +355,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     //For take screenshot without status bar return Bitmap
-    protected fun nbGetScreenShotWithoutStatusBar(): Bitmap {
+     fun nbGetScreenShotWithoutStatusBar(): Bitmap {
         val view = activity!!.window.decorView
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
@@ -374,11 +368,11 @@ abstract class BaseFragment : Fragment() {
     }
 
     //DISABLE SCREEN CAPTURE
-    protected fun disableScreenshotFunctionality() {
+     fun disableScreenshotFunctionality() {
         activity!!.window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
     }
 
-    protected fun getDateDifference(startDate: Date, endDate: Date): String {
+     fun getDateDifference(startDate: Date, endDate: Date): String {
         try {
             var different = endDate.time - startDate.time
             if (different <= 0) {
