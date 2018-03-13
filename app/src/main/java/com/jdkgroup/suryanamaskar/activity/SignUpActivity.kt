@@ -14,6 +14,7 @@ import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.suryanamaskar.dialog.SpDialogCountry
 import com.jdkgroup.utils.*
 import com.jdkgroup.view.SignUpView
+import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignUpActivity : SimpleMVPActivity<SignUpPresenter, SignUpView>(), SignUpView {
     private var listCountry: List<ModelCountry>? = null
@@ -28,14 +29,14 @@ class SignUpActivity : SimpleMVPActivity<SignUpPresenter, SignUpView>(), SignUpV
 
         //TODO SIGN UP
         appBtnSignUp.setOnClickListener({
-            var userName = appEdiTextGetString(R.id.appEdtUserName)
-            val email =  appEdiTextGetString(R.id.appEdtEmail)
-            val password = appEdiTextGetString(R.id.appEdtPassword)
-            val confirmPassword = appEdiTextGetString(R.id.appEdtConfirmPassword)
-            val mobile =  appEdiTextGetString(R.id.appEdtMobile)
+            var userName = appEdtUserName.text.toString()
+            var email = appEdtEmail.text.toString()
+            var password = appEdtPassword.text.toString()
+            var confirmPassword = appEdtConfirmPassword.text.toString()
+            var mobile = appEdtMobile.text.toString()
 
             if (validation(userName, email, password, confirmPassword, mobile)) {
-                presenter!!.callApiPostSignUp(SignUpRequest(userName, email, password, null, mobile, null, null, null, null, null , 0, null));
+                presenter!!.callApiPostSignUp(SignUpRequest(userName, email, password, null, mobile, null, null, null, null, null, 0, null));
             }
         })
     }

@@ -14,6 +14,7 @@ import com.jdkgroup.customview.socialintegration.googleintegration.GoogleLoginHe
 import com.jdkgroup.customview.socialintegration.googleintegration.GoogleLoginListener
 import com.jdkgroup.customview.socialintegration.googleintegration.GoogleLoginModel
 import com.jdkgroup.model.api.signup.SignUpResponse
+import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.presenter.LoginPresenter
 import com.jdkgroup.suryanamaskar.DrawerActivity
 import com.jdkgroup.suryanamaskar.R
@@ -22,6 +23,7 @@ import com.jdkgroup.utils.AppUtils
 import com.jdkgroup.utils.PreferenceUtils
 import com.jdkgroup.utils.logInfo
 import com.jdkgroup.view.LoginView
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView, FacebookLoginListener, GoogleLoginListener {
 
@@ -41,8 +43,8 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
         //TODO LOGIN
         findViewById<AppCompatButton>(R.id.appBtnLogin).setOnClickListener(
                 {
-                    val email = appEdiTextGetString(R.id.appEdtEmail)
-                    val password = appEdiTextGetString(R.id.appEdtPassword)
+                    val email = appEdtEmail.text.toString()
+                    val password = appEdtPassword.text.toString()
 
                     val validator = Validator(password)
                     var result: Boolean = validator.atLeastOneNumber()
@@ -55,9 +57,9 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
                     logInfo(result.toString())
 
 
-                    //if (presenter!!.validation(email, password, this)) {
-                    //presenter!!.apiCall(RestConstant.CALL_API_LOGIN, SignUpRequest(email, password))
-                    //}
+                    if (presenter!!.validation(email, password, this)) {
+                        presenter!!.apiCall(RestConstant.CALL_API_LOGIN, SignUpRequest(email, password))
+                    }
                 }
         )
 

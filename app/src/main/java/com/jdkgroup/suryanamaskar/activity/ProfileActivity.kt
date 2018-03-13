@@ -14,6 +14,7 @@ import com.jdkgroup.utils.PreferenceUtils
 import com.jdkgroup.view.ProfileView
 import com.jdkgroup.customview.permission.askPermissions
 import com.jdkgroup.customview.permission.handlePermissionsResult
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), ProfileView {
 
@@ -61,10 +62,10 @@ class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), Prof
                 //TODO UPDATE PROFILE
                 findViewById<AppCompatButton>(R.id.appBtnSubmit).setOnClickListener(
                         {
-                            val username = appEdiTextGetString(R.id.appEdtUserName)
-                            val mobile = appEdiTextGetString(R.id.appEdtMobile)
-                            val pincode = appEdiTextGetString(R.id.appEdtPinCode)
-                            val address = appEdiTextGetString(R.id.appEdtAddress)
+                            var username = appEdtUserName.text.toString()
+                            var mobile = appEdtMobile.text.toString()
+                            var pincode = appEdtPinCode.text.toString()
+                            var address = appEdtAddress.text.toString()
 
                             presenter!!.callApiPostProfile(SignUpRequest(PreferenceUtils.preferenceInstance(activity).userId, username, PreferenceUtils.preferenceInstance(activity).email, "kamal", 1, mobile, "0", "0", pincode, address));
                         }

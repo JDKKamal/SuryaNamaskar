@@ -5,6 +5,18 @@
     <color name="colorAccent">#FF6900</color>
     <color name="colorSettingMenu">#FFFFFF</color>
 
+    <color name="sunny">#f5be25</color>
+    <color name="cloudy">#052e67</color>
+    <color name="clear">@android:color/holo_blue_light</color>
+    <color name="rain">#3e4c5e</color>
+
+    <color name="colorDefaultBackground">#F9F9F9</color>
+    <color name="colorDefaultTitle">#414fca</color>
+    <color name="colorDefaultSubTitle">#d16767</color>
+    <color name="colorDefaultLine">#51ae45</color>
+    <color name="colorDefaultCircle">#51ae45</color>
+    <color name="colorDefaultStroke">#F9F9F9</color>
+
     <color name="colorBackground">#FFFFFF</color> <!-- FAFAFA -->
     <color name="colorIconTintForm">#BDBDBD</color>
     <color name="colorDialogSpLine">#828282</color>
