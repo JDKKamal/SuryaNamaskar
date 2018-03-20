@@ -6,7 +6,9 @@ import com.jdkgroup.constant.RestConstant
 import com.jdkgroup.interacter.AppInteractor
 import com.jdkgroup.presenter.SplashScreenPresenter
 import com.jdkgroup.utils.AppUtils
+import com.jdkgroup.utils.LogUtils
 import com.jdkgroup.utils.PreferenceUtils
+import com.jdkgroup.utils.logInfo
 import com.jdkgroup.view.SplashScreenView
 
 class SplashScreen : SimpleMVPActivity<SplashScreenPresenter, SplashScreenView>(), SplashScreenView, RestConstant {
@@ -30,6 +32,10 @@ class SplashScreen : SimpleMVPActivity<SplashScreenPresenter, SplashScreenView>(
         } else {
             presenter!!.getSplashScreenWait(SPLASH_TIME_OUT)
         }
+
+        //TODO READ FILE
+        val readFile = AppUtils.readFile("json/address", "txt", this);
+        logInfo(readFile!!)
     }
 
     override fun createPresenter(): SplashScreenPresenter {

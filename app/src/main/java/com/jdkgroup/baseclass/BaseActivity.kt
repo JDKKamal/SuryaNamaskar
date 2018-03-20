@@ -381,7 +381,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun decimalPointAfterBeforeAmount(maxDigitsBeforeDecimalPoint: Int, maxDigitsAfterDecimalPoint: Int): InputFilter {
-
         return InputFilter { source, start, end, dest, dstart, dend ->
             val builder = StringBuilder(dest)
             builder.replace(dstart, dend, source.subSequence(start, end).toString())
@@ -429,7 +428,6 @@ abstract class BaseActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
     fun appExist() {
@@ -456,34 +454,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun IsHasSDCard(): Boolean {
+    fun isHasSDCard(): Boolean {
         val status = Environment.getExternalStorageState()
         return status == Environment.MEDIA_MOUNTED
-    }
-
-    //For take screenshot with status bar return Bitmap
-    fun nbGetScreenShotWithStatusBar(): Bitmap {
-        val view = this.window.decorView
-        view.isDrawingCacheEnabled = true
-        view.buildDrawingCache()
-        val bmp = view.drawingCache
-        val width = getScreenSize(this)[0]
-        val height = getScreenSize(this)[1]
-        view.destroyDrawingCache()
-        return Bitmap.createBitmap(bmp, 0, 0, width, height)
-    }
-
-    //For take screenshot without status bar return Bitmap
-    fun nbGetScreenShotWithoutStatusBar(): Bitmap {
-        val view = this.window.decorView
-        view.isDrawingCacheEnabled = true
-        view.buildDrawingCache()
-        val bmp = view.drawingCache
-        val frame = Rect()
-        this.window.decorView.getWindowVisibleDisplayFrame(frame)
-        val statusBarHeight = frame.top
-        view.destroyDrawingCache()
-        return Bitmap.createBitmap(bmp, 0, statusBarHeight, getScreenSize(this)[0], getScreenSize(this)[1] - statusBarHeight)
     }
 
     //DISABLE SCREEN CAPTURE

@@ -28,6 +28,7 @@ import java.util.ArrayList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import com.jdkgroup.model.api.Response
+import com.jdkgroup.model.api.faq.FaqListSectionResponse
 import com.jdkgroup.utils.logInfo
 import okhttp3.MultipartBody
 
@@ -110,6 +111,13 @@ class AppInteractor : RestConstant {
 
     fun apiPostProfile(context: Context, signUpRequest: SignUpRequest, callback: InterActorCallback<SignUpResponse>) {
         RestClient(context).service.apiPostProfile(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_PROFILE, signUpRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(RxAPICallDisposingObserver(context, callback))
+    }
+
+    fun apiPostFaqSection(context: Context, callback: InterActorCallback<FaqListSectionResponse>) {
+        RestClient(context).service.apiPostFaqSection(RestConstant.Companion.BASE_URL + RestConstant.Companion.API_POST_FAQ_SECTION)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(RxAPICallDisposingObserver(context, callback))

@@ -2,6 +2,7 @@ package com.jdkgroup.connection
 
 import com.jdkgroup.model.api.Response
 import com.jdkgroup.model.api.countrylist.CountryResponse
+import com.jdkgroup.model.api.faq.FaqListSectionResponse
 import com.jdkgroup.model.api.signup.SignUpResponse
 import com.jdkgroup.model.request.SignUpRequest
 
@@ -36,6 +37,9 @@ interface RestService {
 
     @POST
     fun apiPostLogin(@Url url: String, @Body signUpRequest : SignUpRequest): Observable<SignUpResponse>
+
+    @POST
+    fun apiPostFaqSection(@Url url: String): Observable<FaqListSectionResponse>
 
     @POST
     fun apiPostProfile(@Url url: String, @Body signUpRequest: SignUpRequest): Observable<SignUpResponse>

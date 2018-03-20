@@ -20,6 +20,7 @@ import android.provider.MediaStore
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatImageView
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -173,14 +174,13 @@ object AppUtils {
     }
 
     fun getDate(timeStamp: Long): String {
-        try {
+        return try {
             val sdf = SimpleDateFormat("DD MMMM yyyy", Locale.getDefault())
             val netDate = Date(timeStamp * 1000)
-            return sdf.format(netDate)
+            sdf.format(netDate)
         } catch (ex: Exception) {
-            return ""
+            ""
         }
-
     }
 
     @Throws(ParseException::class)
@@ -249,12 +249,23 @@ object AppUtils {
         } catch (e: Exception) {
             return null
         }
-
     }
 
     fun getFileSize(file: File): Long {
         val sizeInBytes = file.length()
         return sizeInBytes / (1024 * 1024)
+    }
+
+    fun readFile(fileName: String, extension: String, activity: Activity): String? {
+        //TODO CALL FUNCTION
+        //val readFile = AppUtils.readFile("json/address", "txt", this);
+        return try {
+            val inputStream: InputStream = activity.assets.open(fileName + "." + extension)
+            val inputString = inputStream.bufferedReader().use { it.readText() }
+            inputString
+        } catch (ex: Exception) {
+            ex.toString()
+        }
     }
 
     fun dpToPx(dp: Float, resources: Resources): Int {
@@ -408,8 +419,7 @@ object AppUtils {
         return inputStream.toString()
     }
 
-    fun glideSetAppImageView(context : Context, imageUrl : String, appIv : AppCompatImageView)
-    {
+    fun glideSetAppImageView(context: Context, imageUrl: String, appIv: AppCompatImageView) {
         Glide.with(context).load(imageUrl).into(appIv);
     }
 }

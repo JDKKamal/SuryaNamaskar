@@ -12,6 +12,7 @@ interface RestConstant {
         val API_POST_SIGN_UP = "signup"
         val API_POST_LOGIN = "login"
         val API_POST_PROFILE = "profile"
+        val API_POST_FAQ_SECTION= "faqsection"
         val API_MULTIPART_UPLOAD_USER_PROFILE_PICTURE = "upload_profile"
 
         val CALL_API_LOGIN = 1;

@@ -119,6 +119,8 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
 
     override fun onFbSignInSuccess(facebookLoginModel: FacebookLoginModel) {
         println("Tag" + "Facebook login data" + getToJsonClass(facebookLoginModel))
+
+      getToJsonClass(facebookLoginModel)
     }
 
     override fun onFBSignOut() {
