@@ -23,7 +23,6 @@ class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), Prof
         setContentView(R.layout.activity_profile)
 
         hideSoftKeyboard()
-
         permission()
     }
 

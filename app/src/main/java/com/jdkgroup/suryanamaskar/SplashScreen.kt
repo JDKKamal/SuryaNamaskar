@@ -15,6 +15,7 @@ class SplashScreen : SimpleMVPActivity<SplashScreenPresenter, SplashScreenView>(
 
     private val SPLASH_TIME_OUT = 3000
     private var appInteractor: AppInteractor? = null
+    private var readFile : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class SplashScreen : SimpleMVPActivity<SplashScreenPresenter, SplashScreenView>(
         }
 
         //TODO READ FILE
-        val readFile = AppUtils.readFile("json/address", "txt", this);
+        readFile = AppUtils.readFile("json/address", "txt", this)
         logInfo(readFile!!)
     }
 

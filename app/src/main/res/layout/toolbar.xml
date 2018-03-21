@@ -9,6 +9,8 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/colorWhite"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
     </android.support.v7.widget.Toolbar>
 

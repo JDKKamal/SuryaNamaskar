@@ -81,6 +81,7 @@
 
     <!-- LOGIN -->
     <color name="color_or_sign_with">#939393</color>
+    <color name="color_line_adapter">#939393</color>
     <color name="color_line_or">#FF6900</color>
     <color name="colorForgotPassword">#414141</color>
     <color name="colorSignUp">#FF6900</color>

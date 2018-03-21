@@ -66,7 +66,6 @@ public class SpDialogCountry extends Dialog {
 
         setContentView(R.layout.custom_spinner_dialog);
 
-
         appTvTitle = findViewById(R.id.appTvTitle);
         appEdtSearch = findViewById(R.id.appEdtSearch);
         recyclerView = findViewById(R.id.recyclerView);

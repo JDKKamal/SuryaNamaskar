@@ -20,6 +20,7 @@
     <dimen name="iv_topic">@dimen/_80sdp</dimen>
     <dimen name="tag_like">@dimen/_42sdp</dimen>
 
+    <dimen name="vector">@dimen/_20sdp</dimen>
     <dimen name="iv">@dimen/_35sdp</dimen>
     <dimen name="iv_next_indicator">@dimen/_30sdp</dimen>
     <dimen name="iv_search">@dimen/_7sdp</dimen>

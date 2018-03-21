@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), MyAdapter.ItemListener {
         adapter.setOnListener(this)
         rvKotlin!!.setHasFixedSize(true)
         rvKotlin!!.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
         rvKotlin!!.adapter = adapter
     }
 

@@ -13,6 +13,7 @@ import com.jdkgroup.suryanamaskar.timeline.model.CityWeather
 import com.jdkgroup.suryanamaskar.timeline.model.Timepoint
 import com.jdkgroup.suryanamaskar.timeline.model.Weather
 import kotlinx.android.synthetic.main.activity_timeline_view.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class TimelineActivity : AppCompatActivity() {
 
@@ -21,10 +22,12 @@ class TimelineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeline_view)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolBar)
+
         timelineRecyclerAdapter = TimelineRecyclerAdapter()
-        recycler_view.adapter = timelineRecyclerAdapter
-        recycler_view.layoutManager = LinearLayoutManager(this)
+        rvTimeLineView.adapter = timelineRecyclerAdapter
+        rvTimeLineView.layoutManager = LinearLayoutManager(this)
+
         timelineRecyclerAdapter.addWeatherHeader(cityWeather)
         for (i in 0..5) {
             timelineRecyclerAdapter.addTimepoint(timepoints[i])
