@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1084249318157",
+    "firebase_url": "https://suryanamaskar-83f70.firebaseio.com",
+    "project_id": "suryanamaskar-83f70",
+    "storage_bucket": "suryanamaskar-83f70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084249318157:android:5b16cae63109b2a2",
+        "android_client_info": {
+          "package_name": "com.jdkgroup.suryanamaskar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084249318157-bapcj1qccto0lenbgls16c5ja4ttff0g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jdkgroup.suryanamaskar",
+            "certificate_hash": "9d5f6467125fde2e57345d97c5dd70242f22d9c9"
+          }
+        },
+        {
+          "client_id": "1084249318157-htfvd11rfg0eclrbdng0n1740lkbnnkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4KOSYaFQP2c7fFMaOtN42IrSA7X8YZSE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084249318157-htfvd11rfg0eclrbdng0n1740lkbnnkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
