@@ -1,12 +1,8 @@
 package com.jdkgroup.presenter
 
-import com.jdkgroup.baseclass.BasePresenter
 import com.jdkgroup.interacter.InterActorCallback
 import com.jdkgroup.model.api.faq.FaqListSectionResponse
-import com.jdkgroup.model.api.signup.SignUpResponse
-import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.view.FaqView
-import com.jdkgroup.view.LoginView
 
 class FaqPresenter : BasePresenter<FaqView>() {
      fun callApiPostFaqSection() {

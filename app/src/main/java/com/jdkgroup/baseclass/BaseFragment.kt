@@ -50,7 +50,7 @@ import java.util.Date
 import java.util.HashMap
 import java.util.UUID
 
-abstract class BaseFragment : Fragment() {
+public open class BaseFragment : Fragment() {
 
     private var progressDialog: Dialog? = null
     private var params: HashMap<String, String>? = null

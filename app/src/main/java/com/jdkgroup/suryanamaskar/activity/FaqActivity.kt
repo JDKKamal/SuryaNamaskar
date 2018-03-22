@@ -1,8 +1,6 @@
 package com.jdkgroup.suryanamaskar.activity
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.widget.LinearLayout
 import com.jdkgroup.baseclass.SimpleMVPActivity
 import com.jdkgroup.model.api.faq.FaqListSectionResponse
 import com.jdkgroup.presenter.FaqPresenter

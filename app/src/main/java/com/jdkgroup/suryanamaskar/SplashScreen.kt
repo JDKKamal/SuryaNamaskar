@@ -6,7 +6,6 @@ import com.jdkgroup.constant.RestConstant
 import com.jdkgroup.interacter.AppInteractor
 import com.jdkgroup.presenter.SplashScreenPresenter
 import com.jdkgroup.utils.AppUtils
-import com.jdkgroup.utils.LogUtils
 import com.jdkgroup.utils.PreferenceUtils
 import com.jdkgroup.utils.logInfo
 import com.jdkgroup.view.SplashScreenView

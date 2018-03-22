@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.AppCompatButton
 import com.jdkgroup.baseclass.SimpleMVPActivity
 import com.jdkgroup.constant.RestConstant
+import com.jdkgroup.customview.permission.askPermissions
+import com.jdkgroup.customview.permission.handlePermissionsResult
 import com.jdkgroup.model.api.signup.SignUpResponse
 import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.presenter.ProfilePresenter
@@ -12,8 +14,6 @@ import com.jdkgroup.suryanamaskar.R
 import com.jdkgroup.utils.AppUtils
 import com.jdkgroup.utils.PreferenceUtils
 import com.jdkgroup.view.ProfileView
-import com.jdkgroup.customview.permission.askPermissions
-import com.jdkgroup.customview.permission.handlePermissionsResult
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), ProfileView {
