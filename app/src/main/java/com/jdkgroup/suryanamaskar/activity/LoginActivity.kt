@@ -58,7 +58,7 @@ class LoginActivity : SimpleMVPActivity<LoginPresenter, LoginView>(), LoginView,
 
 
                     if (presenter!!.validation(email, password, this)) {
-                        presenter!!.apiCall(RestConstant.CALL_API_LOGIN, SignUpRequest(email, password))
+                        presenter!!.apiCall(this, RestConstant.CALL_API_LOGIN, SignUpRequest(email, password))
                     }
                 }
         )

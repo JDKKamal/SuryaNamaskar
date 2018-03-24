@@ -1,5 +1,6 @@
 package com.jdkgroup.presenter
 
+import android.app.Activity
 import com.jdkgroup.baseclass.BasePresenter
 import com.jdkgroup.interacter.InterActorCallback
 import com.jdkgroup.model.api.countrylist.CountryResponse
@@ -8,8 +9,8 @@ import com.jdkgroup.model.request.SignUpRequest
 import com.jdkgroup.view.SignUpView
 
 class SignUpPresenter : BasePresenter<SignUpView>() {
-    fun callApiGetCountryList() {
-        appInteractor.apiGetCountryList(view!!.activity, object : InterActorCallback<CountryResponse> {
+    fun callApiGetCountryList(activity: Activity) {
+        appInteractor.apiGetCountryList(activity, object : InterActorCallback<CountryResponse> {
             override fun onStart() {
                 view!!.showProgressDialog(true)
             }
@@ -29,8 +30,8 @@ class SignUpPresenter : BasePresenter<SignUpView>() {
         })
     }
 
-    fun callApiPostSignUp(signUpRequest: SignUpRequest) {
-        appInteractor.apiPostSignUp(view!!.activity, signUpRequest,  object : InterActorCallback<SignUpResponse> {
+    fun callApiPostSignUp(activity: Activity , signUpRequest: SignUpRequest) {
+        appInteractor.apiPostSignUp(activity, signUpRequest,  object : InterActorCallback<SignUpResponse> {
             override fun onStart() {
                 view!!.showProgressDialog(true)
             }

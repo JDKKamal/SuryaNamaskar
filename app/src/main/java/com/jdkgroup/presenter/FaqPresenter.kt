@@ -1,12 +1,15 @@
 package com.jdkgroup.presenter
 
+import android.app.Activity
+import com.jdkgroup.baseclass.BaseActivity
+import com.jdkgroup.baseclass.BasePresenter
 import com.jdkgroup.interacter.InterActorCallback
 import com.jdkgroup.model.api.faq.FaqListSectionResponse
 import com.jdkgroup.view.FaqView
 
 class FaqPresenter : BasePresenter<FaqView>() {
-     fun callApiPostFaqSection() {
-        appInteractor.apiPostFaqSection(view!!.activity, object : InterActorCallback<FaqListSectionResponse> {
+     fun callApiPostFaqSection(activity: Activity) {
+        appInteractor.apiPostFaqSection(activity, object : InterActorCallback<FaqListSectionResponse> {
             override fun onStart() {
                 view!!.showProgressDialog(true)
             }

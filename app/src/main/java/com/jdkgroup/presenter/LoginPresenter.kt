@@ -12,8 +12,8 @@ import com.jdkgroup.utils.Validator
 import com.jdkgroup.view.LoginView
 
 class LoginPresenter : BasePresenter<LoginView>() {
-    private fun callApiPostLogin(signUpRequest: SignUpRequest) {
-        appInteractor.apiPostLogin(view!!.activity, signUpRequest, object : InterActorCallback<SignUpResponse> {
+    private fun callApiPostLogin(activity: Activity , signUpRequest: SignUpRequest) {
+        appInteractor.apiPostLogin(activity, signUpRequest, object : InterActorCallback<SignUpResponse> {
             override fun onStart() {
                 view!!.showProgressDialog(true)
             }
@@ -33,9 +33,9 @@ class LoginPresenter : BasePresenter<LoginView>() {
         })
     }
 
-    fun apiCall(apiNo: Int, signUpRequest: SignUpRequest) {
+    fun apiCall(activity: Activity, apiNo: Int, signUpRequest: SignUpRequest) {
         if (apiNo == RestConstant.CALL_API_LOGIN) {
-            callApiPostLogin(signUpRequest)
+            callApiPostLogin(activity, signUpRequest)
         }
     }
 

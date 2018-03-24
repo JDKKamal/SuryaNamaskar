@@ -21,7 +21,7 @@ class FaqActivity : SimpleMVPActivity<FaqPresenter, FaqView>(), FaqView {
         setSupportActionBar(toolBar)
         setRecyclerView(rvFaq, 0, recyclerViewLinearLayout)
 
-        presenter!!.callApiPostFaqSection()
+        presenter!!.callApiPostFaqSection(this)
     }
 
     override fun attachView(): FaqView {

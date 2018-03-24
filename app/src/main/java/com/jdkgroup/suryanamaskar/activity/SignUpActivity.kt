@@ -36,7 +36,7 @@ class SignUpActivity : SimpleMVPActivity<SignUpPresenter, SignUpView>(), SignUpV
             var mobile = appEdtMobile.text.toString()
 
             if (validation(userName, email, password, confirmPassword, mobile)) {
-                presenter!!.callApiPostSignUp(SignUpRequest(userName, email, password, null, mobile, null, null, null, null, null, 0, null));
+                presenter!!.callApiPostSignUp(this, SignUpRequest(userName, email, password, null, mobile, null, null, null, null, null, 0, null));
             }
         })
     }

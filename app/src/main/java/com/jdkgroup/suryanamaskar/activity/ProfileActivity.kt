@@ -66,7 +66,7 @@ class ProfileActivity : SimpleMVPActivity<ProfilePresenter, ProfileView>(), Prof
                             var pincode = appEdtPinCode.text.toString()
                             var address = appEdtAddress.text.toString()
 
-                            presenter!!.callApiPostProfile(SignUpRequest(PreferenceUtils.preferenceInstance(activity).userId, username, PreferenceUtils.preferenceInstance(activity).email, "kamal", 1, mobile, "0", "0", pincode, address));
+                            presenter!!.callApiPostProfile(activity, SignUpRequest(PreferenceUtils.preferenceInstance(activity).userId, username, PreferenceUtils.preferenceInstance(activity).email, "kamal", 1, mobile, "0", "0", pincode, address));
                         }
                 )
             }
