@@ -15,7 +15,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Environment
+import android.os.Parcelable
 import android.provider.MediaStore
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
@@ -37,6 +39,7 @@ import com.bumptech.glide.Glide
 import com.jdkgroup.suryanamaskar.R
 
 import org.json.JSONObject
+import org.parceler.Parcels
 
 import java.io.BufferedReader
 import java.io.File
@@ -109,11 +112,17 @@ object AppUtils {
     }
 
 
-    fun isInternet(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isInternet(activity: Activity, status: Int): Boolean {
+        val connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         @SuppressLint("MissingPermission") val networkInfo = connectivityManager.activeNetworkInfo
         if (!(networkInfo != null && networkInfo.isConnectedOrConnecting)) {
-            showToast(context, context.getString(R.string.no_internet_message))
+            if (status == 1) {
+                showToast(activity, activity.getString(R.string.no_internet_message))
+            }
+            else
+            {
+                logInfo(activity.getString(R.string.no_internet_message))
+            }
             return false
         }
         return true
@@ -138,6 +147,34 @@ object AppUtils {
     fun startActivity(context: Context, className: Class<*>) {
         val intent = Intent(context, className)
         context.startActivity(intent)
+    }
+
+    //Parcel
+    fun launchIsClearParcelable(activity: Activity, classType: Class<*>, bundle: Bundle, status: Int) {
+        val intent = Intent(activity, classType)
+        if (status == 0) {
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        intent.putExtra("bundle", bundle)
+        activity.startActivity(intent)
+    }
+
+    fun launchParcel(activity: Activity, classType: Class<*>, data: Bundle, status: Int) {
+        val intent = Intent(activity, classType)
+        if (status == 0) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+        }
+        intent.putExtras(data)
+        activity.startActivity(intent)
+    }
+
+    /* TODO LAUNCH ACTIVITY */
+    /*
+     * Bundle bundle = new Bundle();
+     * bundle.putParcelable(bundleName, Parcels.wrap(alData));
+     * */
+    fun <T> getParcelable(activity: Activity, bundleName: String): T? {
+        return Parcels.unwrap<T>(activity.intent.getParcelableExtra<Parcelable>(bundleName))
     }
 
     fun getDateFromTime(mTimestamp: Long, mDateFormat: String): String {

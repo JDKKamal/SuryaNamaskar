@@ -314,34 +314,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return null
     }
 
-    //Parcel
-    fun launchIsClearParcelable(classType: Class<*>, bundle: Bundle, status: Int) {
-        val intent = Intent(this, classType)
-        if (status == 0) {
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        intent.putExtra("bundle", bundle)
-        startActivity(intent)
-    }
-
-    fun launchParcel(classType: Class<*>, data: Bundle, status: Int) {
-        val intent = Intent(activity, classType)
-        if (status == 0) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-        }
-        intent.putExtras(data)
-        startActivity(intent)
-    }
-
-    /* TODO LAUNCH ACTIVITY */
-    /*
-     * Bundle bundle = new Bundle();
-     * bundle.putParcelable(bundleName, Parcels.wrap(alData));
-     * */
-    fun <T> getParcelable(bundleName: String): T? {
-        return Parcels.unwrap<T>(activity.intent.getParcelableExtra<Parcelable>(bundleName))
-    }
-
     fun launch(classType: Class<*>, bundle: Bundle, addFlag: Int) {
         when (addFlag) {
             1 //NO BUNDLE AND NO CLEAR
@@ -372,10 +344,12 @@ abstract class BaseActivity : AppCompatActivity() {
         return list != null && !list.isEmpty()
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     fun hasLollipop(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     fun hasM(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
@@ -385,7 +359,7 @@ abstract class BaseActivity : AppCompatActivity() {
             val builder = StringBuilder(dest)
             builder.replace(dstart, dend, source.subSequence(start, end).toString())
             if (!builder.toString().matches(("(([1-9]{1})([0-9]{0," + (maxDigitsBeforeDecimalPoint - 1) + "})?)?(\\.[0-9]{0," + maxDigitsAfterDecimalPoint + "})?").toRegex())) {
-                return@InputFilter if (source.length == 0) dest.subSequence(dstart, dend) else ""
+                return@InputFilter if (source.isEmpty()) dest.subSequence(dstart, dend) else ""
             }
             null
         }
@@ -430,6 +404,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("InflateParams")
     fun appExist() {
         val builder = AlertDialog.Builder(this)
         val alertDialog = builder.create()
@@ -448,7 +423,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun getFileDelete(fileName: String) {
         val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + AppConstant.FOLDER_NAME + File.separator + fileName)
         val deleted = file.delete()
-        if (deleted == true)
+        if (deleted)
             logInfo("Delete successful")
         logInfo("Delete not successful")
     }
@@ -473,7 +448,7 @@ abstract class BaseActivity : AppCompatActivity() {
             val secondsInMilli: Long = 1000
             val minutesInMilli = secondsInMilli * 60
             val elapsedMinutes = different / minutesInMilli
-            different = different % minutesInMilli
+            different %= minutesInMilli
 
             val elapsedSeconds = different / secondsInMilli
 
